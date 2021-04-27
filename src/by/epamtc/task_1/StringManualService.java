@@ -2,8 +2,6 @@ package by.epamtc.task_1;
 
 import by.epamtc.task_1.exception.NullStringException;
 
-import javax.swing.*;
-
 import static by.epamtc.task_1.Util.isConsonant;
 import static by.epamtc.task_1.Util.isLetter;
 

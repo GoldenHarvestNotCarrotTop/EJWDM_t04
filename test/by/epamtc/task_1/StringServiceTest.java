@@ -54,6 +54,7 @@ class StringServiceTest {
         String ans = "Axczpo, xvvvxcvbp      cxvpoxcv,,,cvvpovvx, CXvpOv, cvvPov, bfgPO,c";
         assertEquals(ans, StringManualService.fixTypoAtoO(tst));
         assertEquals(ans, StringRegexService.fixTypoAtoO(tst));
+        assertEquals(ans, StringFunctionService.fixTypoAtoO(tst));
     }
 
     @Test

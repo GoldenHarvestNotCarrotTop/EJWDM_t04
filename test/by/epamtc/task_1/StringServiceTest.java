@@ -63,6 +63,7 @@ class StringServiceTest {
         String ans = "xxx xxx 2 3 4 xxx xxx xxx xxx xxx xxx asjfsc xv xxx fsdcv xcv ,   xcv xxx xxx     , xxx";
         assertEquals(ans, StringManualService.replaceWordsByLength(tst, 1, "xxx"));
         assertEquals(ans, StringRegexService.replaceWordsByLength(tst, 1, "xxx"));
+        assertEquals(ans, StringFunctionService.replaceWordsByLength(tst, 1, "xxx"));
     }
 
     @Test

@@ -6,7 +6,9 @@ public class StringFunctionService {
     private static final String cons = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
 
     public static void main(String[] args) {
-        replaceKthSymbolInEveryWord("asdxc", 2, 'x');
+        StringBuilder sb = new StringBuilder("x xxx ccz z");
+        sb.replace(0,1,"zzzzzz");
+        System.out.println(sb);
     }
 
     public static String replaceKthSymbolInEveryWord(String s, int k, char to) {
@@ -61,10 +63,21 @@ public class StringFunctionService {
         }
         return sb.toString();
     }
-//
-//    public static String replaceWordsByLength(String s, int length, String replace) {
-//
-//    }
+
+    public static String replaceWordsByLength(String s, int length, String replace) {
+        StringBuilder sb = new StringBuilder(s);
+        WordBounds wordBounds = Util.nextWordPos(s, 0);
+        while (wordBounds.isCorrect()) {
+            if (wordBounds.wordSize() == length) {
+                sb.replace(wordBounds.first, wordBounds.second+1, replace);
+            }
+
+            //TODO: remove sb.toString()
+            wordBounds = Util.nextWordPos(sb.toString(), wordBounds.first + replace.length());
+
+        }
+        return sb.toString();
+    }
 //
 //    public static String leaveOnlyWords(String s) {
 //    }

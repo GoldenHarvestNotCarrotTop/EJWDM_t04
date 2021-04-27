@@ -1,21 +1,20 @@
 package by.epamtc.task_1;
 
-// TODO: better name
 public class WordBounds {
-    public WordBounds(int first, int second) {
-        this.first = first;
-        this.second = second;
+    public WordBounds(int left, int right) {
+        this.left = left;
+        this.right = right;
     }
 
     public boolean isCorrect() {
-        return this.first >= 0 && this.first <= this.second;
+        return this.left >= 0 && this.left <= this.right;
 
     }
 
     public int wordSize() {
-        return this.second - this.first + 1;
+        return this.right - this.left + 1;
     }
 
-    public int first;
-    public int second;
+    public int left;
+    public int right;
 }

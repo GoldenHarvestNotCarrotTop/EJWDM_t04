@@ -1,26 +1,17 @@
 package by.epamtc.task_1;
 
-import java.nio.charset.StandardCharsets;
-
 public class StringFunctionService {
     private static final String cons = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
-
-    public static void main(String[] args) {
-        // TODO: remove main
-        StringBuilder sb = new StringBuilder("x xxx ccz z");
-        sb.replace(0, 1, "zzzzzz");
-        System.out.println(sb);
-    }
 
     public static String replaceKthSymbolInEveryWord(String s, int k, char to) {
         StringBuilder sb = new StringBuilder(s);
         WordBounds wordBounds = Util.nextWordPos(s, 0);
         while (wordBounds.isCorrect()) {
             if (wordBounds.wordSize() >= k) {
-                sb.setCharAt(wordBounds.first + k - 1, to);
+                sb.setCharAt(wordBounds.left + k - 1, to);
             }
 
-            wordBounds = Util.nextWordPos(s, wordBounds.second + 1);
+            wordBounds = Util.nextWordPos(s, wordBounds.right + 1);
 
         }
         return sb.toString();
@@ -31,11 +22,11 @@ public class StringFunctionService {
         StringBuilder sb = new StringBuilder(s);
         WordBounds wordBounds = Util.nextWordPos(s, 0);
         while (wordBounds.isCorrect()) {
-            if (isConsonant(s.charAt(wordBounds.first)) && wordBounds.wordSize() == length) {
-                sb.delete(wordBounds.first, wordBounds.second + 1);
-                wordBounds = Util.nextWordPos(sb.toString(), wordBounds.first);
+            if (isConsonant(s.charAt(wordBounds.left)) && wordBounds.wordSize() == length) {
+                sb.delete(wordBounds.left, wordBounds.right + 1);
+                wordBounds = Util.nextWordPos(sb.toString(), wordBounds.left);
             } else {
-                wordBounds = Util.nextWordPos(sb.toString(), wordBounds.second + 1);
+                wordBounds = Util.nextWordPos(sb.toString(), wordBounds.right + 1);
             }
 
         }
@@ -50,31 +41,36 @@ public class StringFunctionService {
 
     }
 
+
     public static String fixTypoAtoO(String s) {
+        return fixTypo(s,'p','a','o');
+    }
+
+    public static String fixTypo(String s, char prev, char old, char replace) {
         StringBuilder sb = new StringBuilder(s);
         WordBounds wordBounds = Util.nextWordPos(s, 0);
         while (wordBounds.isCorrect()) {
-            int indexOfp = s.indexOf('p', wordBounds.first);
-            int indexOfP = s.indexOf('P', wordBounds.first);
-            // TODO: remove code repeats
-            if ((wordBounds.first <= indexOfp) && (indexOfp <= wordBounds.second)
-                    && (indexOfp != s.length() - 1)
-                    && (s.charAt(indexOfp + 1) == 'a' || s.charAt(indexOfp + 1) == 'A')) {
+            int indexOfLcPrev = s.indexOf(Character.toLowerCase(prev), wordBounds.left);
+            int indexOfUcPrev = s.indexOf(Character.toUpperCase(prev), wordBounds.left);
 
-                sb.setCharAt(indexOfp + 1, matchCase(s.charAt(indexOfp + 1), 'o'));
-            }
+            replaceCharAfterCharInWord(s, sb, wordBounds, indexOfLcPrev, old, replace);
 
-            if ((wordBounds.first <= indexOfP) && (indexOfP <= wordBounds.second)
-                    && (indexOfP != s.length() - 1)
-                    && (s.charAt(indexOfP + 1) == 'a' || s.charAt(indexOfP + 1) == 'A')) {
+            replaceCharAfterCharInWord(s, sb, wordBounds, indexOfUcPrev, old, replace);
 
-                sb.setCharAt(indexOfP + 1, matchCase(s.charAt(indexOfP + 1), 'o'));
-            }
-
-            wordBounds = Util.nextWordPos(s, wordBounds.second + 1);
+            wordBounds = Util.nextWordPos(s, wordBounds.right + 1);
 
         }
         return sb.toString();
+    }
+
+    private static void replaceCharAfterCharInWord(String s, StringBuilder sb, WordBounds wordBounds, int afterCharPos, char old,
+                                                   char _new) {
+        if ((wordBounds.left <= afterCharPos) && (afterCharPos <= wordBounds.right)
+                && (afterCharPos != s.length() - 1)
+                && Character.toLowerCase(s.charAt(afterCharPos + 1)) == old) {
+
+            sb.setCharAt(afterCharPos + 1, matchCase(s.charAt(afterCharPos + 1), _new));
+        }
     }
 
     public static String replaceWordsByLength(String s, int length, String replace) {
@@ -82,11 +78,10 @@ public class StringFunctionService {
         WordBounds wordBounds = Util.nextWordPos(s, 0);
         while (wordBounds.isCorrect()) {
             if (wordBounds.wordSize() == length) {
-                sb.replace(wordBounds.first, wordBounds.second + 1, replace);
+                sb.replace(wordBounds.left, wordBounds.right + 1, replace);
             }
 
-            //TODO: remove sb.toString()
-            wordBounds = Util.nextWordPos(sb.toString(), wordBounds.first + replace.length());
+            wordBounds = Util.nextWordPos(sb.toString(), wordBounds.left + replace.length());
 
         }
         return sb.toString();
@@ -96,9 +91,9 @@ public class StringFunctionService {
         StringBuilder sb = new StringBuilder();
         WordBounds wordBounds = Util.nextWordPos(s, 0);
         while (wordBounds.isCorrect()) {
-            sb.append(s, wordBounds.first, wordBounds.second + 1).append(" ");
+            sb.append(s, wordBounds.left, wordBounds.right + 1).append(" ");
 
-            wordBounds = Util.nextWordPos(s, wordBounds.second + 1);
+            wordBounds = Util.nextWordPos(s, wordBounds.right + 1);
 
         }
         sb.deleteCharAt(sb.length() - 1);

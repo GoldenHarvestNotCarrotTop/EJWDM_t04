@@ -47,7 +47,6 @@ public class StringManualService {
             }
         }
 
-        // TODO: remove code repeats
         if (wordSize != length || !isConsonant(word.charAt(0)))
             sb.append(word);
 
@@ -98,7 +97,6 @@ public class StringManualService {
             }
         }
 
-        // TODO: remove code repeats
         if (wordSize == length)
             sb.append(replace);
         else

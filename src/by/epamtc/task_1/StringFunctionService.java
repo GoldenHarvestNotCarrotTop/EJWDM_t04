@@ -6,8 +6,9 @@ public class StringFunctionService {
     private static final String cons = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
 
     public static void main(String[] args) {
+        // TODO: remove main
         StringBuilder sb = new StringBuilder("x xxx ccz z");
-        sb.replace(0,1,"zzzzzz");
+        sb.replace(0, 1, "zzzzzz");
         System.out.println(sb);
     }
 
@@ -26,9 +27,21 @@ public class StringFunctionService {
     }
 
 
-    //    public static String deleteWordsStartsWithConsonantByLength(String s, int length) {
-//    }
-//
+    public static String deleteWordsStartsWithConsonantByLength(String s, int length) {
+        StringBuilder sb = new StringBuilder(s);
+        WordBounds wordBounds = Util.nextWordPos(s, 0);
+        while (wordBounds.isCorrect()) {
+            if (isConsonant(s.charAt(wordBounds.first)) && wordBounds.wordSize() == length) {
+                sb.delete(wordBounds.first, wordBounds.second + 1);
+                wordBounds = Util.nextWordPos(sb.toString(), wordBounds.first);
+            } else {
+                wordBounds = Util.nextWordPos(sb.toString(), wordBounds.second + 1);
+            }
+
+        }
+        return sb.toString();
+    }
+
     private static char matchCase(char from, char to) {
         if (Character.isLowerCase(from))
             return Character.toLowerCase(to);
@@ -69,7 +82,7 @@ public class StringFunctionService {
         WordBounds wordBounds = Util.nextWordPos(s, 0);
         while (wordBounds.isCorrect()) {
             if (wordBounds.wordSize() == length) {
-                sb.replace(wordBounds.first, wordBounds.second+1, replace);
+                sb.replace(wordBounds.first, wordBounds.second + 1, replace);
             }
 
             //TODO: remove sb.toString()
@@ -78,9 +91,19 @@ public class StringFunctionService {
         }
         return sb.toString();
     }
-//
-//    public static String leaveOnlyWords(String s) {
-//    }
+
+    public static String leaveOnlyWords(String s) {
+        StringBuilder sb = new StringBuilder();
+        WordBounds wordBounds = Util.nextWordPos(s, 0);
+        while (wordBounds.isCorrect()) {
+            sb.append(s, wordBounds.first, wordBounds.second + 1).append(" ");
+
+            wordBounds = Util.nextWordPos(s, wordBounds.second + 1);
+
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
+    }
 
 
     private static boolean isConsonant(char ch) {

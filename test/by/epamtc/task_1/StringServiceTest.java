@@ -2,7 +2,7 @@ package by.epamtc.task_1;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class StringServiceTest {
 
@@ -78,17 +78,20 @@ class StringServiceTest {
         ans = "Axczpa xvvvxcvbp cxvpaxcv cvvpovvx CXvpAv cvvPav bfgPA c";
         assertEquals(ans, StringManualService.leaveOnlyWords(tst));
         assertEquals(ans, StringRegexService.leaveOnlyWords(tst));
+        assertEquals(ans, StringFunctionService.leaveOnlyWords(tst));
     }
 
     @Test
     void deleteWordsStartsWithConsonantByLength() {
         String tst = "Lorem ipsum dolor sit amet, consectetur adipiscing rlita";
         String ans = " ipsum  sit amet, consectetur adipiscing ";
-        assertEquals(ans,StringManualService.deleteWordsStartsWithConsonantByLength(tst, 5));
-        assertEquals(ans,StringRegexService.deleteWordsStartsWithConsonantByLength(tst, 5));
+        assertEquals(ans, StringManualService.deleteWordsStartsWithConsonantByLength(tst, 5));
+        assertEquals(ans, StringRegexService.deleteWordsStartsWithConsonantByLength(tst, 5));
+        assertEquals(ans, StringFunctionService.deleteWordsStartsWithConsonantByLength(tst, 5));
     }
+
     @Test
-    void test(){
+    void test() {
         String s = "xcz , a sdd axczxc dfdsf sd dffff Fxcv DXCZCX sfsXCZc ";
         String news = s.replaceAll("([a-zA-Z]{3,})", "$1_____");
         System.out.println(news);

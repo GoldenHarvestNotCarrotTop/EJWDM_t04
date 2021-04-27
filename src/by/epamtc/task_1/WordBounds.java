@@ -1,5 +1,6 @@
 package by.epamtc.task_1;
 
+// TODO: better name
 public class WordBounds {
     public WordBounds(int first, int second) {
         this.first = first;

@@ -18,4 +18,29 @@ public class Util {
         }
         return false;
     }
+
+    public static WordBounds nextWordPos(String s, int start) {
+        if (s.length() <= start)
+            return new WordBounds(-1, -1);
+        int wordStart = start;
+
+        // Finding wordStart
+        while (wordStart < s.length() && !Character.isLetter(s.charAt(wordStart))) {
+            wordStart++;
+        }
+        if (wordStart == s.length())
+            return new WordBounds(-1, -1);
+
+        int wordEnd = wordStart + 1;
+        while (wordEnd < s.length() && Character.isLetter(s.charAt(wordEnd))) {
+            wordEnd++;
+        }
+        return new WordBounds(wordStart, wordEnd - 1);
+
+
+    }
+
+    public static void main(String[] args) {
+        nextWordPos("   asxc zc zxxx   ", 0);
+    }
 }

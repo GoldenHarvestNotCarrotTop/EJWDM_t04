@@ -15,6 +15,8 @@ class StringServiceTest {
                 StringManualService.replaceKthSymbolInEveryWord(tst, 1, 'o'));
         assertEquals(ans,
                 StringRegexService.replaceKthSymbolInEveryWord(tst, 1, 'o'));
+        assertEquals(ans,
+                StringFunctionService.replaceKthSymbolInEveryWord(tst, 1, 'o'));
 
 
         tst = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ";
@@ -23,6 +25,8 @@ class StringServiceTest {
                 StringManualService.replaceKthSymbolInEveryWord(tst, 5, 'o'));
         assertEquals(ans,
                 StringRegexService.replaceKthSymbolInEveryWord(tst, 5, 'o'));
+        assertEquals(ans,
+                StringFunctionService.replaceKthSymbolInEveryWord(tst, 5, 'o'));
 
 
         tst = "xxxxx";
@@ -31,6 +35,8 @@ class StringServiceTest {
                 StringManualService.replaceKthSymbolInEveryWord(tst, 5, 'o'));
         assertEquals(ans,
                 StringRegexService.replaceKthSymbolInEveryWord(tst, 5, 'o'));
+        assertEquals(ans,
+                StringFunctionService.replaceKthSymbolInEveryWord(tst, 5, 'o'));
 
 
         tst = "       ";
@@ -38,6 +44,8 @@ class StringServiceTest {
                 StringManualService.replaceKthSymbolInEveryWord(tst, 3, 'x'));
         assertEquals(tst,
                 StringRegexService.replaceKthSymbolInEveryWord(tst, 3, 'x'));
+        assertEquals(tst,
+                StringFunctionService.replaceKthSymbolInEveryWord(tst, 3, 'x'));
     }
 
     @Test

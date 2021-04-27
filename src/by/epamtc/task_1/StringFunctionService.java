@@ -1,9 +1,16 @@
 package by.epamtc.task_1;
 
+import by.epamtc.task_1.exception.NullStringException;
+
+import static by.epamtc.task_1.Util.isConsonant;
+import static by.epamtc.task_1.Util.matchCase;
+
 public class StringFunctionService {
     private static final String cons = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
 
-    public static String replaceKthSymbolInEveryWord(String s, int k, char to) {
+    public static String replaceKthSymbolInEveryWord(String s, int k, char to) throws NullStringException {
+        if(s == null)
+            throw new NullStringException("String must not be null!");
         StringBuilder sb = new StringBuilder(s);
         WordBounds wordBounds = Util.nextWordPos(s, 0);
         while (wordBounds.isCorrect()) {
@@ -18,7 +25,9 @@ public class StringFunctionService {
     }
 
 
-    public static String deleteWordsStartsWithConsonantByLength(String s, int length) {
+    public static String deleteWordsStartsWithConsonantByLength(String s, int length) throws NullStringException {
+        if(s == null)
+            throw new NullStringException("String must not be null!");
         StringBuilder sb = new StringBuilder(s);
         WordBounds wordBounds = Util.nextWordPos(s, 0);
         while (wordBounds.isCorrect()) {
@@ -33,20 +42,15 @@ public class StringFunctionService {
         return sb.toString();
     }
 
-    private static char matchCase(char from, char to) {
-        if (Character.isLowerCase(from))
-            return Character.toLowerCase(to);
-        else
-            return Character.toUpperCase(to);
-
-    }
 
 
-    public static String fixTypoAtoO(String s) {
+    public static String fixTypoAtoO(String s) throws NullStringException {
         return fixTypo(s,'p','a','o');
     }
 
-    public static String fixTypo(String s, char prev, char old, char replace) {
+    public static String fixTypo(String s, char prev, char old, char replace) throws NullStringException {
+        if(s == null)
+            throw new NullStringException("String must not be null!");
         StringBuilder sb = new StringBuilder(s);
         WordBounds wordBounds = Util.nextWordPos(s, 0);
         while (wordBounds.isCorrect()) {
@@ -64,7 +68,9 @@ public class StringFunctionService {
     }
 
     private static void replaceCharAfterCharInWord(String s, StringBuilder sb, WordBounds wordBounds, int afterCharPos, char old,
-                                                   char _new) {
+                                                   char _new) throws NullStringException {
+        if(s == null)
+            throw new NullStringException("String must not be null!");
         if ((wordBounds.left <= afterCharPos) && (afterCharPos <= wordBounds.right)
                 && (afterCharPos != s.length() - 1)
                 && Character.toLowerCase(s.charAt(afterCharPos + 1)) == old) {
@@ -73,7 +79,9 @@ public class StringFunctionService {
         }
     }
 
-    public static String replaceWordsByLength(String s, int length, String replace) {
+    public static String replaceWordsByLength(String s, int length, String replace) throws NullStringException {
+        if(s == null)
+            throw new NullStringException("String must not be null!");
         StringBuilder sb = new StringBuilder(s);
         WordBounds wordBounds = Util.nextWordPos(s, 0);
         while (wordBounds.isCorrect()) {
@@ -87,7 +95,9 @@ public class StringFunctionService {
         return sb.toString();
     }
 
-    public static String leaveOnlyWords(String s) {
+    public static String leaveOnlyWords(String s) throws NullStringException {
+        if(s == null)
+            throw new NullStringException("String must not be null!");
         StringBuilder sb = new StringBuilder();
         WordBounds wordBounds = Util.nextWordPos(s, 0);
         while (wordBounds.isCorrect()) {
@@ -100,8 +110,4 @@ public class StringFunctionService {
         return sb.toString();
     }
 
-
-    private static boolean isConsonant(char ch) {
-        return cons.contains(String.valueOf(ch));
-    }
 }

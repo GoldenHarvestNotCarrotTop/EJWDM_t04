@@ -1,5 +1,6 @@
 package by.epamtc.task_1;
 
+import by.epamtc.task_1.exception.NullStringException;
 import by.epamtc.task_1.exception.WrongFileException;
 
 import java.io.File;
@@ -13,7 +14,9 @@ public class StringInputService {
         return scanner.nextLine();
     }
 
-    public static String readTextFromFile(String filename) throws WrongFileException {
+    public static String readTextFromFile(String filename) throws WrongFileException, NullStringException {
+        if(filename == null)
+            throw new NullStringException("Filename must not be null!");
 
 
         File file = new File(filename);

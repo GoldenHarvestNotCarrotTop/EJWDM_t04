@@ -1,5 +1,6 @@
 package by.epamtc.task_1;
 
+import by.epamtc.task_1.exception.NullStringException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,7 +9,7 @@ class StringServiceTest {
 
 
     @Test
-    void replaceKthSymbolInEveryWord() {
+    void replaceKthSymbolInEveryWord() throws NullStringException {
         String tst = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ";
         String ans = "oorem opsum oolor oit omet, oonsectetur odipiscing olit. ";
         assertEquals(ans,
@@ -49,7 +50,7 @@ class StringServiceTest {
     }
 
     @Test
-    void fixTypoAtoO() {
+    void fixTypoAtoO() throws NullStringException {
         String tst = "Axczpa, xvvvxcvbp      cxvpaxcv,,,cvvpovvx, CXvpAv, cvvPav, bfgPA,c";
         String ans = "Axczpo, xvvvxcvbp      cxvpoxcv,,,cvvpovvx, CXvpOv, cvvPov, bfgPO,c";
         assertEquals(ans, StringManualService.fixTypoAtoO(tst));
@@ -58,7 +59,7 @@ class StringServiceTest {
     }
 
     @Test
-    void replaceWordsByLength() {
+    void replaceWordsByLength() throws NullStringException {
         String tst = "c s 2 3 4 f c x v g s asjfsc xv s fsdcv xcv ,   xcv x z     , z";
         String ans = "xxx xxx 2 3 4 xxx xxx xxx xxx xxx xxx asjfsc xv xxx fsdcv xcv ,   xcv xxx xxx     , xxx";
         assertEquals(ans, StringManualService.replaceWordsByLength(tst, 1, "xxx"));
@@ -67,7 +68,7 @@ class StringServiceTest {
     }
 
     @Test
-    void leaveOnlyWords() {
+    void leaveOnlyWords() throws NullStringException {
         String tst = "c s 2 3 4 f c x v g s asjfsc xv s fsdcv xcv ,   xcv x z     , z";
         String ans = "c s f c x v g s asjfsc xv s fsdcv xcv xcv x z z";
         assertEquals(ans, StringManualService.leaveOnlyWords(tst));
@@ -82,7 +83,7 @@ class StringServiceTest {
     }
 
     @Test
-    void deleteWordsStartsWithConsonantByLength() {
+    void deleteWordsStartsWithConsonantByLength() throws NullStringException {
         String tst = "Lorem ipsum dolor sit amet, consectetur adipiscing rlita";
         String ans = " ipsum  sit amet, consectetur adipiscing ";
         assertEquals(ans, StringManualService.deleteWordsStartsWithConsonantByLength(tst, 5));
@@ -94,6 +95,5 @@ class StringServiceTest {
     void test() {
         String s = "xcz , a sdd axczxc dfdsf sd dffff Fxcv DXCZCX sfsXCZc ";
         String news = s.replaceAll("([a-zA-Z]{3,})", "$1_____");
-        System.out.println(news);
     }
 }

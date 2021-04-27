@@ -39,6 +39,13 @@ public class Util {
 
 
     }
+    public static char matchCase(char from, char to) {
+        if (Character.isLowerCase(from))
+            return Character.toLowerCase(to);
+        else
+            return Character.toUpperCase(to);
+
+    }
 
     public static void main(String[] args) {
         nextWordPos("   asxc zc zxxx   ", 0);

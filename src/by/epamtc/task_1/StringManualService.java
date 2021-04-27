@@ -1,5 +1,7 @@
 package by.epamtc.task_1;
 
+import by.epamtc.task_1.exception.NullStringException;
+
 import javax.swing.*;
 
 import static by.epamtc.task_1.Util.isConsonant;
@@ -7,7 +9,9 @@ import static by.epamtc.task_1.Util.isLetter;
 
 public class StringManualService {
 
-    public static String replaceKthSymbolInEveryWord(String s, int k, char to) {
+    public static String replaceKthSymbolInEveryWord(String s, int k, char to) throws NullStringException {
+        if(s == null)
+            throw new NullStringException("String must not be null!");
         StringBuilder sb = new StringBuilder();
 
         int wordSize = 0;
@@ -27,7 +31,9 @@ public class StringManualService {
         return sb.toString();
     }
 
-    public static String deleteWordsStartsWithConsonantByLength(String s, int length) {
+    public static String deleteWordsStartsWithConsonantByLength(String s, int length) throws NullStringException {
+        if(s == null)
+            throw new NullStringException("String must not be null!");
         StringBuilder sb = new StringBuilder();
 
         int wordSize = 0;
@@ -53,7 +59,9 @@ public class StringManualService {
         return sb.toString();
     }
 
-    public static String fixTypoAtoO(String s) {
+    public static String fixTypoAtoO(String s) throws NullStringException {
+        if(s == null)
+            throw new NullStringException("String must not be null!");
         StringBuilder sb = new StringBuilder();
 
         boolean isPrevP = false;
@@ -75,7 +83,9 @@ public class StringManualService {
         return sb.toString();
     }
 
-    public static String replaceWordsByLength(String s, int length, String replace) {
+    public static String replaceWordsByLength(String s, int length, String replace) throws NullStringException {
+        if(s == null)
+            throw new NullStringException("String must not be null!");
         StringBuilder sb = new StringBuilder();
 
         int wordSize = 0;
@@ -105,7 +115,9 @@ public class StringManualService {
         return sb.toString();
     }
 
-    public static String leaveOnlyWords(String s) {
+    public static String leaveOnlyWords(String s) throws NullStringException {
+        if(s == null)
+            throw new NullStringException("String must not be null!");
         StringBuilder sb = new StringBuilder();
 
         int wordSize = 0;
